@@ -14,7 +14,7 @@ public class loginAction implements superAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
 		
 		Dao dao = Dao.getInstance();
-		HttpSession session = null;
+		HttpSession session = request.getSession();
 		boolean result = false;
 		try{
 			Cookie[] cookie = request.getCookies();
