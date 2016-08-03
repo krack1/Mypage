@@ -19,33 +19,34 @@ public class Controller extends HttpServlet {
 		if(uri.equals("/Mypage/login.hjh")) {
 			view = "/home/login.jsp";
 		}
-		if(uri.equals("/Mypage/enter.hjh")) {
+		else if(uri.equals("/Mypage/enter.hjh")) {
 			view = "/home/enter.jsp";
 		}
-		if(uri.equals("/Mypage/login_complete.hjh")) {
+		else if(uri.equals("/Mypage/login_complete.hjh")) {
 			view = "/home/login_complete.jsp";
 		}
-		if(uri.equals("/Mypage/list.hjh")) {
+		else if(uri.equals("/Mypage/list.hjh")) {
 			view = "/board/list.jsp";
 		}
-		if(uri.equals("/Mypage/logout.hjh")) {
+		else if(uri.equals("/Mypage/logout.hjh")) {
 			view = "/home/logout.jsp";
 		}
-		if(uri.equals("/Mypage/confirmId.hjh")) {
+		else if(uri.equals("/Mypage/confirmId.hjh")) {
 			view = "/home/confirmId.jsp";
-		}if(uri.equals("/Mypage/enter_done.hjh")) {
+		}
+		else if(uri.equals("/Mypage/enter_done.hjh")) {
 			view = "/home/enter_done.jsp";
 		}
-		if(uri.equals("/Mypage/modify.hjh")) {
+		else if(uri.equals("/Mypage/modify.hjh")) {
 			view = "/home/modify.jsp";
 		}
-		if(uri.equals("/Mypage/modifyDone.hjh")) {
+		else if(uri.equals("/Mypage/modifyDone.hjh")) {
 			view = "/home/modifyDone.jsp";
 		}
-		if(uri.equals("/Mypage/withdraw.hjh")) {
+		else if(uri.equals("/Mypage/withdraw.hjh")) {
 			view = "/home/withdraw.jsp";
 		}
-		if(uri.equals("/Mypage/withdrawDone.hjh")) {
+		else if(uri.equals("/Mypage/withdrawDone.hjh")) {
 			view = "/home/withdrawDone.jsp";
 		}
 		

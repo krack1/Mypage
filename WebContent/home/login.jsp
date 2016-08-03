@@ -119,7 +119,7 @@ if(cookie != null) {
 		<tr>
 			<td><input type="button" value="회원탈퇴" onclick="location.href='withdraw.hjh'" class="button"/>
 		<input type="button" value="로그아웃" onclick="location.href= 'logout.hjh'" class="button" /><input type="button" value="정보수정" onclick="location.href='modify.hjh'" class="button"/>
-		<input type="button" value="게시판" onclick="location.href='/Mypage/board/list.hjh'" class="button" /><br />
+		<input type="button" value="게시판" onclick="location.href='list.hjh'" class="button" /><br />
 		</td>
 		</tr>
 	</table>
