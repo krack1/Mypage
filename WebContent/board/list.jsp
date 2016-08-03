@@ -70,7 +70,7 @@ String id = request.getParameter("search");
 	<table>
 		<tr>
 			<td>
-				<a href="/Mypage/home/login.jsp">로그인</a>
+				<a href="login.hjh">로그인</a>
 			</td>
 		</tr>
 	</table>
@@ -98,7 +98,7 @@ else{
 	<table width = "800">
 		<tr>
 			<td width="800" align="right">
-				<a href="/Mypage/home/login.jsp">로그인</a>
+				<a href="login.hjh">로그인</a>
 			</td>
 		</tr>
 	</table>
