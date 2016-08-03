@@ -22,24 +22,11 @@
 <body>
 <fmt:requestEncoding value="utf-8" />
 
-<%
-Dao dao = Dao.getInstance();
-boolean result = false;
 
-Cookie[] cookie = request.getCookies();
-if(cookie != null) {
-	for(Cookie coo : cookie) {
-		result = dao.findId(coo.getValue());
-		if(result) {
-			session.setAttribute("memid", coo.getValue());
-		}
-	}
-}
-
-%>
 
 <%--세션이 없으면 기본 로그인 창을 띄운다. --%>
-<%if(session.getAttribute("memid") == null) {%>
+<c:if test="${sessionScope.memid == null }">
+
 <form method="post" name="login_order" action="login_complete.hjh">
 
 <div id="container" style="width:180px; height:60px; padding: 0px 0px 10px 0px">
@@ -58,56 +45,49 @@ if(cookie != null) {
     <input type="checkbox" name="keeplogin" value="on"><font size="2">로그인상태 유지하기</font>
 </form>
 <%--세션이 있으면 로그인완료 페이지를 띄운다. --%>
-<%}else if(session.getAttribute("memid") != null){
-	
-	if(session.getAttribute("memid").equals("krack1")) {
-		
-	ArrayList<Dto> list = dao.select();%>
-	
-	<table border="1">
-	<tr >
-		<td>ID</td>
-		<td>PW</td>
-		<td>BIRTH</td>
-		<td>SEX</td>
-		<td>ADDRESS</td>
-		<td>FIRST</td>
-		<td>SECOND</td>
-		<td>THIRD</td>
-		<td>EMAIL_ID</td>
-		<td>SITE</td>
-		<td>RECEIVE</td>
-		<td>INTEREST</td>
-		<td>REG_DATE</td>
-	</tr>
-	
-	<%
-	for(Dto d : list) {%>
-		<tr>
-			<td><%=d.getId() %></td>
-			<td><%=d.getPass1() %></td>
-			<td><%=d.getBirth() %></td>
-			<td><%=d.getSex() %></td>
-			<td><%=d.getAddress() %></td>
-			<td><%=d.getFirst_number() %></td>
-			<td><%=d.getSecond_number() %></td>
-			<td><%=d.getThird_number() %></td>
-			<td><%=d.getEmail_id() %></td>
-			<td><%=d.getEmail_site_text() %></td>
-			<td><%=d.getReceive() %></td>
-			<td><%=d.getInterest() %></td>
-			<td><%=d.getReg_date() %></td>
+</c:if>
+<c:if test="${sessionScope.memid != null }">
+	id : ${sessionScope.memid }
+	<c:if test="${sessionScope.memid == 'krack1'}">
+
+		<table border="1">
+		<tr >
+			<td>ID</td>
+			<td>PW</td>
+			<td>BIRTH</td>
+			<td>SEX</td>
+			<td>ADDRESS</td>
+			<td>FIRST</td>
+			<td>SECOND</td>
+			<td>THIRD</td>
+			<td>EMAIL_ID</td>
+			<td>SITE</td>
+			<td>RECEIVE</td>
+			<td>INTEREST</td>
+			<td>REG_DATE</td>
 		</tr>
-	<%}%>
-	</table>
+		
+		<c:forEach var="dto" items="${list}">
+			<tr>
+				<td>${dto.id }</td>
+				<td>${dto.pass1}</td>
+				<td>${dto.birth}</td>
+				<td>${dto.sex}</td>
+				<td>${dto.address}</td>
+				<td>${dto.first_number}</td>
+				<td>${dto.second_number}</td>
+				<td>${dto.third_number}</td>
+				<td>${dto.email_id}</td>
+				<td>${dto.email_site_text}</td>
+				<td>${dto.receive}</td>
+				<td>${dto.interest}</td>
+				<td>${dto.reg_date}</td>
+			</tr>
+		</c:forEach>
+		
+		</table>
 	
-<%}%>
-	
-	
-	
-	
-	
-	
+	</c:if>
 
 	<jsp:useBean id="dto" class="test.bean.Dto" />
 	<jsp:setProperty property="*" name="dto" />
@@ -123,9 +103,7 @@ if(cookie != null) {
 		</td>
 		</tr>
 	</table>
-<%
-}
-%>
+</c:if>
 
 
 

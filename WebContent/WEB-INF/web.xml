@@ -3,6 +3,10 @@
  <servlet>
  	<servlet-name>controller</servlet-name>
  	<servlet-class>mvc.controller.Controller</servlet-class>
+ 	<init-param>
+ 		<param-name>propertiesPath</param-name>
+ 		<param-value>E:\\workspace\\Mypage\\WebContent\\WEB-INF\\properties\\command.properties</param-value>
+ 	</init-param>
  </servlet>
  <servlet-mapping>
  	<servlet-name>controller</servlet-name>

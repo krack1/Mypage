@@ -1,5 +1,10 @@
 package mvc.controller;
 
-public class updateActAction {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+public class updateActAction implements superAction{
+	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
+		return "/home/updateAct.jsp";
+	}
 }

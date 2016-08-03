@@ -173,7 +173,7 @@
 			return;				
 		}		
 		checked_id = true;
-		url = "confirmId.jsp?id=" + inputid.id.value;
+		url = "confirmId.hjh?id=" + inputid.id.value;
 		open(url, "confirm", "toolbar=no, location=no, scrollbars=no, resizeable=no,width=300, height=180");
 	}
 	

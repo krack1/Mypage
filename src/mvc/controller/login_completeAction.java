@@ -1,5 +1,10 @@
 package mvc.controller;
 
-public class login_completeAction {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+public class login_completeAction implements superAction{
+	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
+		return "/home/login_complete.jsp";
+	}
 }
