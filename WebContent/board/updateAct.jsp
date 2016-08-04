@@ -11,26 +11,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%request.setCharacterEncoding("utf-8"); %>
 
-<jsp:useBean id="boarddto" class="test.bean.BoardDto">
-<jsp:setProperty property="*" name="boarddto" />
-</jsp:useBean>
 
-<%
-	BoardDao boarddao = BoardDao.getInstance();
-	
-	int result = boarddao.updateArticle(boarddto);
-	System.out.println(result);
-	
-	if(result == 1) {
-		response.sendRedirect("content.hjh?num="+boarddto.getNum()+"&pageNum="+request.getParameter("pageNum").toString()+"&ok=1");
-	}else{%>
-		<script>
-			alert("비밀번호가 틀렸습니다.");
-			history.go(-1);
-		</script>
-	<%}
-%>
+<c:if test="${result == 1 }">
+	<c:redirect url="content.hjh?num=${boarddto.num}&pageNum=${pageNum }&ok=1" />
+</c:if>
+<c:if test="${result != 1 }">
+	<script>
+		alert("비밀번호가 틀렸습니다.");
+		history.go(-1);
+	</script>
+</c:if>
 </body>
 </html>

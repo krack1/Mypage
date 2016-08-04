@@ -11,31 +11,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%request.setCharacterEncoding("utf-8");%>
-<%
-	int num = Integer.parseInt(request.getParameter("num"));
-	String pageNum = request.getParameter("pageNum");
-	String passwd = request.getParameter("passwd");
-	BoardDao boarddao = BoardDao.getInstance();
-	boolean delete = false;
-	
-	if(session.getAttribute("memid").equals("krack1")){
-		delete = boarddao.deleteArticleAdmin(num);
-	}else{
-		delete = boarddao.deleteArticle(num, passwd);
-	}
-	
-	
-	if(delete == true) {
-		response.sendRedirect("list.hjh?pageNum="+pageNum);
-	}else{%>
-		<script type="text/javascript">
+
+<c:if test="${delete == true }">
+	<c:redirect url="list.hjh?pageNum=${pageNum}" />
+</c:if>
+<c:if test="${delete == false }">
+	<script type="text/javascript">
 		alert("비밀번호를 다시 입력해 주세요");
 		history.go(-1);
 		</script>
-	<%}
-	
-%>
+</c:if>
 
 </body>
 </html>

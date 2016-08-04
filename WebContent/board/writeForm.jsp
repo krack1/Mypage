@@ -17,53 +17,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
-<%request.setCharacterEncoding("utf-8"); %>
+
 <center><input type="button" value ="JAEHO" onclick ="location.href='login.hjh'" class="buttontitle"/><br /><br /></center>
-<%
-	Dao dao = Dao.getInstance();
-	String id = session.getAttribute("memid").toString();
-	String pageNum = request.getParameter("pageNum");
-	String re = request.getParameter("re");
-	Dto dto = dao.modifiyInfo(id);
-	int num = 0, ref = 1, re_step = 0, re_level=0;
-	try{
-		if(request.getParameter("num") != null) {
-			num = Integer.parseInt(request.getParameter("num"));
-			ref =Integer.parseInt(request.getParameter("ref"));
-			re_step =Integer.parseInt(request.getParameter("re_step"));
-			re_level =Integer.parseInt(request.getParameter("re_level"));
-		}
-	}catch(Exception e) {
-		e.printStackTrace();
-	}
-%>
+
 <body>
-<form name="orderForm" action="writeFormAct.hjh?pageNum=<%=pageNum %>&re=<%=re %>" method="post" onSubmit="return ok()" >
-<input type="hidden" name="num" value="<%=num %>">
-<input type="hidden" name="ref" value="<%=ref %>">
-<input type="hidden" name="re_step" value="<%=re_step %>">
-<input type="hidden" name="re_level" value="<%=re_level %>">
-<input type="hidden" name="writer" value="<%=dto.getId()%>" >
-<input type="hidden" name="email" value="<%=dto.getEmail_id()+"@"+dto.getEmail_site_text()%>" >
+<form name="orderForm" action="writeFormAct.hjh?pageNum=${pageNum }&re=${re}" method="post" onSubmit="return ok()" >
+<input type="hidden" name="num" value="${num }">
+<input type="hidden" name="ref" value="${ref }">
+<input type="hidden" name="re_step" value="${re_step }">
+<input type="hidden" name="re_level" value="${re_level }">
+<input type="hidden" name="writer" value="${dto.id }" >
+<input type="hidden" name="email" value="${dto.email_id}@${dto.email_site_text }" >
 <center>
 	<table width="800" class="boardtable">
 		<tr>
 			<td width="200">이름</td>
-			<td align="left"><%=dto.getId()%></td>
+			<td align="left">${dto.id }</td>
 		</tr>
 		<tr>
 			<td width="200">제목</td>
 			<td align="left">
-				<%if(re.equals("1")){ %> 
-					<input type="text" name="subject" value="[답변]" style="width:435pt;">
-				<%}else{ %>
-					<input type="text" name="subject" style="width:435pt;">
-				<%}%>
+			
+			<c:if test="${re == '1' }">
+				<input type="text" name="subject" value="[답변]" style="width:435pt;">
+			</c:if>
+			<c:if test="${re != '1' }">
+				<input type="text" name="subject" style="width:435pt;">
+			</c:if>
 			</td>
 		</tr>
 		<tr>
 			<td width="200">메일</td>
-			<td align="left"><%=dto.getEmail_id()+"@"+dto.getEmail_site_text()%></td>
+			<td align="left">${dto.email_id}@${dto.email_site_text }</td>
 		</tr>
 		<tr>
 			<td width="200">내용</td>
@@ -77,7 +62,7 @@
 			<td colspan="2" align="right" >
 			<input type="submit" value="작성" class ="boardbutton" />
 			<input type="reset" value="제거" class ="boardbutton" />
-			<input type="button" value="목록" onclick="window.location='list.hjh?pageNum=<%=pageNum%>'" class ="boardbutton" /> 
+			<input type="button" value="목록" onclick="window.location='list.hjh?pageNum=${pageNum}'" class ="boardbutton" /> 
 			</td>
 		</tr>
 	</table>

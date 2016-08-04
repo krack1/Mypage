@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    <%@page import = "test.bean.BoardDao" %>
-    <%@page import = "test.bean.BoardDto" %>
      <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,38 +16,30 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%request.setCharacterEncoding("utf-8");%>
 <center><input type="button" value ="JAEHO" onclick ="location.href='login.hjh'" class="buttontitle"/><br /><br /></center>
-<%
-	int num = Integer.parseInt(request.getParameter("num"));
-	String pageNum = request.getParameter("pageNum");
-	BoardDao boarddao = BoardDao.getInstance();
-	BoardDto boarddto = boarddao.updateGetArticle(num);
-	
-%>
 
-	<form action = "updateAct.hjh?pageNum=<%=pageNum%>" method="post">
-	<input type="hidden" name="num" value="<%=num %>" />
-	<input type="hidden" name="pageNum" value="<%=pageNum %>" />
-	<input type="hidden" name="writer" value="<%=boarddto.getWriter()%>" />
-	<input type="hidden" name="email" value="<%=boarddto.getEmail()%>" />
+	<form action = "updateAct.hjh?pageNum=${pageNum }" method="post">
+	<input type="hidden" name="num" value="${num }" />
+	<input type="hidden" name="pageNum" value="${pageNum }" />
+	<input type="hidden" name="writer" value="${boarddto.writer }" />
+	<input type="hidden" name="email" value="${boarddto.email }" />
 	<center>
 	<table class="boardtable" width = "800">
 		<tr>
 			<td width="200">이름</td>
-			<td align="left"><%=boarddto.getWriter()%></td>
+			<td align="left">${boarddto.writer }</td>
 		</tr>
 		<tr>
 			<td width="200">제목</td>
-			<td align="left"><input type="text" name="subject" value="<%=boarddto.getSubject() %>" style="width:435pt;" /></td>
+			<td align="left"><input type="text" name="subject" value="${boarddto.subject }" style="width:435pt;" /></td>
 		</tr>
 		<tr>
 			<td width="200">메일</td>
-			<td align="left"><%=boarddto.getEmail()%></td>
+			<td align="left">${boarddto.email }</td>
 		</tr>
 		<tr>
 			<td width="200">내용</td>
-			<td align="left"><textarea rows="20" cols="70" name="content" class="boardtext"><%=boarddto.getContent() %></textarea></td>
+			<td align="left"><textarea rows="20" cols="70" name="content" class="boardtext">${boarddto.content }</textarea></td>
 		</tr>
 		<tr>
 			<td width="200">비밀번호</td>
@@ -59,7 +49,7 @@
 			<td colspan="2" align="right">
 			<input type="submit" value="수정" class="boardbutton" />
 			<input type="reset" value="취소" class="boardbutton" />
-			<input type="button" value="목록" onclick="window.location='list.hjh?pageNum=<%=pageNum%>'" class="boardbutton" /> 
+			<input type="button" value="목록" onclick="window.location='list.hjh?pageNum=${pageNum}'" class="boardbutton" /> 
 			</td>
 		</tr>
 	</table>

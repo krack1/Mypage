@@ -11,18 +11,16 @@
 </head>
 <body>
 <center><input type="button" value ="JAEHO" onclick ="location.href='login.hjh'" class="buttontitle"/><br /><br /></center>
-<%int num = Integer.parseInt(request.getParameter("num"));
-String pageNum = request.getParameter("pageNum");
-%>
-<% if(session.getAttribute("memid").equals("krack1")){
-		response.sendRedirect("deleteAct.hjh?num="+num+"&pageNum="+pageNum);
-	}else{%>
-	<form action="deleteAct.hjh?pageNum=<%=pageNum %>" method="post">
-	암호를 입력하세요<input type="password" name="passwd"/>
-	<input type="hidden" name="num" value="<%=num %>" />
-	<input type="submit" value="삭제" /><input type="button" value="글목록" onclick="document.location.href='list.hjh?pageNum=<%=pageNum%>'"/>
+<c:if test="${sessionScope.memid == 'krack1' }">
+	<c:redirect url="deleteAct.hjh?num=${num }&pageNum=${pageNum }" />
+</c:if>
+<c:if test="${sessionScope.memid != 'krack1' }">
+	<form action="deleteAct.hjh?pageNum=${pageNum }" method="post">
+		암호를 입력하세요<input type="password" name="passwd"/>
+		<input type="hidden" name="num" value="${num }" />
+		<input type="submit" value="삭제" /><input type="button" value="글목록" onclick="document.location.href='list.hjh?pageNum=${pageNum}'"/>
 	</form>
-<%}%>
+</c:if>
 
 </body>
 </html>

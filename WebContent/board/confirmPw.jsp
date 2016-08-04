@@ -12,29 +12,24 @@
 </head>
 <body>
 <center><input type="button" value ="JAEHO" onclick ="location.href='login.hjh'" class="buttontitle"/><br /><br /></center>
-<%request.setCharacterEncoding("utf-8"); %>
-<%
-	int num = Integer.parseInt(request.getParameter("num"));
-	String pageNum = request.getParameter("pageNum");
-	String writer = request.getParameter("writer");
-%>
-<%if(session.getAttribute("memid").equals("krack1")){
-	response.sendRedirect("content.hjh?num="+num+"&pageNum="+pageNum+"&writer="+writer);
-}
-%>
-<%if(writer.equals(session.getAttribute("memid"))){ %>
-<form action="content.hjh?num=<%=num%>&pageNum=<%=pageNum%>&writer=<%=writer%>" method="post">
-비밀번호<input type="password" name="passwd" />
-<input type="submit" value="확인" />
-<input type="button" value="글목록" onclick="document.location.href='/list.hjh?pageNum=<%=pageNum %>'" />
 
-</form>
-<%}else{%>
+<c:if test="${sessionScope.memid == 'krack1' }">
+	<c:redirect url="content.hjh?num=${num }&pageNum=${pageNum }&writer=${writer }" />
+</c:if>
+
+<c:if test="${writer == sessionScope.memid }">
+	<form action="content.hjh?num=${num }&pageNum=${pageNum }&writer=${writer}" method="post">
+		비밀번호<input type="password" name="passwd" />
+		<input type="submit" value="확인" />
+		<input type="button" value="글목록" onclick="document.location.href='/list.hjh?pageNum=${pageNum}'" />	
+	</form>
+</c:if>
+<c:if test="${writer != sessionScope.memid }">
 		<script>
-		alert("본인만 확인할수 있습니다.");
-		history.go(-1);
+			alert("본인만 확인할수 있습니다.");
+			history.go(-1);
 		</script>
-<%}%>
+</c:if>
 
 </body>
 </html>

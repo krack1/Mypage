@@ -23,70 +23,58 @@
 </head>
 <body>
 <center><input type="button" value ="JAEHO" onclick ="location.href='login.hjh'" class="buttontitle"/><br /><br /></center>
-<%request.setCharacterEncoding("utf-8");%>
-<%
-	int num = Integer.parseInt(request.getParameter("num"));
-	String pageNum = request.getParameter("pageNum");
-	String writer = request.getParameter("writer");
-	String passwd = request.getParameter("passwd");
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
-	try{
-		BoardDao boarddao = BoardDao.getInstance();
-		BoardDto boarddto = boarddao.getArticle(num);
-		
-		int ref=boarddto.getRef();
-		int re_step=boarddto.getRe_step();
-		int re_level=boarddto.getRe_level();
-%>
-	<%if(boarddto.getPasswd().equals(passwd) || session.getAttribute("memid").equals("krack1") || request.getParameter("ok").equals("1")){ %>
-	<center>
-	<form action = "" method="post">
-	<table width ="800" class="boardtable">
-		<tr>
-			<td width="200">글번호</td>
-			<td width="200"><%=boarddto.getNum() %></td>
-			<td width="200">조회수</td>
-			<td width="200"><%=boarddto.getReadcount() %></td>
-		</tr>
-		<tr>
-			<td width="200">작성자</td>
-			<td width="200"><%=boarddto.getWriter() %></td>
-			<td width="200">작성일</td>
-			<td width="200"><%=sdf.format(boarddto.getReg_date())%></td>
-		</tr>
-		<tr>
-			<td width="200">제목</td>
-			<td width="800" colspan="3" align="left"><%=boarddto.getSubject() %></td>
-		</tr>
-		<tr>
-			<td colspan="4">내용</td>
-		</tr>
-		<tr>
-			<td colspan="4" height="150" align="left" style="padding:0px 0px 0px 50px"><%=boarddto.getContent().replace("\r\n", "<br />") %></td>
-		</tr>
-		<tr>
-			<td colspan="4" align="right">
-			<%if(session.getAttribute("memid") != null) { %>
-			<input type="button" value="수정" onclick="document.location.href='updateForm.hjh?num=<%=num%>&pageNum=<%=pageNum%>'" class="boardbutton" />
-			<input type="button" value="삭제" onclick="document.location.href='delete.hjh?num=<%=num%>&pageNum=<%=pageNum%>'" class="boardbutton" />
-				<%if(session.getAttribute("memid").equals("krack1")) {%>
-					<input type="button" value="답글" onclick="document.location.href='writeForm.hjh?num=<%=num %>&ref=<%=ref %>&re_step=<%=re_step %>&re_level=<%=re_level %>&pageNum=<%=pageNum %>&re=1'" class="boardbutton" />
-				<%} %>
-			<%}%>
-			<input type="button" value="목록" onclick="document.location.href='list.hjh?pageNum=<%=pageNum %>'" class="boardbutton" />
-			</td>		
-		</tr>
-	</table>
-	</form>
-	<%}else{ %>
+	<c:if test="${boarddto.passwd == passwd || sessionScope.memid == 'krack1' || ok == '1'}">
+		<center>
+			<form action = "" method="post">
+				<table width ="800" class="boardtable">
+					<tr>
+						<td width="200">글번호</td>
+						<td width="200">${num }</td>
+						<td width="200">조회수</td>
+						<td width="200">${boarddto.readcount}</td>
+					</tr>
+					<tr>
+						<td width="200">작성자</td>
+						<td width="200">${boarddto.writer}</td>
+						<td width="200">작성일</td>
+						<td width="200">${boarddto.reg_date} </td>
+					</tr>
+					<tr>
+						<td width="200">제목</td>
+						<td width="800" colspan="3" align="left">${boarddto.subject }</td>
+					</tr>
+					<tr>
+						<td colspan="4">내용</td>
+					</tr>
+					<tr>
+						<td colspan="4" height="150" align="left" style="padding:0px 0px 0px 50px">${boarddto.content }</td>
+					</tr>
+					<tr>
+						<td colspan="4" align="right">
+						
+						<c:if test="${sessionScope.memid != null }">
+							<input type="button" value="수정" onclick="document.location.href='updateForm.hjh?num=${num }&pageNum=${pageNum }'" class="boardbutton" />
+							<input type="button" value="삭제" onclick="document.location.href='delete.hjh?num=${num }&pageNum=${pageNum }'" class="boardbutton" />
+							<c:if test="${session.memid == 'krack1' }">
+								<input type="button" value="답글" onclick="document.location.href='writeForm.hjh?num=${num }&ref=${ref }&re_step=${re_step }&re_level=${re_level }&pageNum=${pageNum }&re=1'" class="boardbutton" />
+							</c:if>
+						</c:if>
+						
+						<input type="button" value="목록" onclick="document.location.href='list.hjh?pageNum=${pageNum}'" class="boardbutton" />
+						</td>		
+					</tr>
+				</table>
+			</form>
+		</center>
+	</c:if>
+	<c:if test="${boarddto.passwd != passwd && sessionScope.memid != 'krack1' && ok != '1'} ">
 		<script>
 			alert("비밀번호를 다시입력해주세요.");
 			history.go(-1);
 		</script>
-	<%} %>
-	
-<%}catch(Exception e){}%>
-</center>
+	</c:if>
+
+
 </body>
 </html>
