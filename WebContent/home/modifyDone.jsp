@@ -2,6 +2,8 @@
     pageEncoding="utf-8"%>
 <%@ page import ="test.bean.Dto"%>
 <%@ page import ="test.bean.Dao"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link href="/Mypage/style/style.css" rel="stylesheet" type="text/css">
 <%request.setCharacterEncoding("utf-8");%>
 <jsp:useBean id="dto" class="test.bean.Dto" />

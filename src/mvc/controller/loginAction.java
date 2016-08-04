@@ -14,23 +14,28 @@ public class loginAction implements superAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
 		
 		Dao dao = Dao.getInstance();
-		HttpSession session = request.getSession();
+		
 		boolean result = false;
 		try{
+			HttpSession session = request.getSession();
 			Cookie[] cookie = request.getCookies();
+			
 			if(cookie != null) {
 				for(Cookie coo : cookie) {
 					result = dao.findId(coo.getValue());
 					if(result) {
-						session = request.getSession();
 						session.setAttribute("memid", coo.getValue());
 					}
 				}
 			}
+		
+		if(session.getAttribute("memid") != null){
 			if(session.getAttribute("memid").equals("krack1")){
 				ArrayList<Dto> list = dao.select();
 				request.setAttribute("list", list);
 			}
+		}
+
 		}catch(Exception e){e.printStackTrace();}
 		
 		return "/home/login.jsp";

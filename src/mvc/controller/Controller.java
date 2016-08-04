@@ -1,6 +1,7 @@
 package mvc.controller;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -17,8 +18,52 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class Controller extends HttpServlet {
-	
+
 	Map map = new HashMap();
+	
+	public void init(ServletConfig config) throws ServletException {
+		String path = config.getInitParameter("propertiesPath");
+		InputStream is = null;
+		Properties p = new Properties();
+		try{
+			is = new FileInputStream(path);
+			p.load(is);
+			Iterator it = p.keySet().iterator();
+			while(it.hasNext()){
+				String key = it.next().toString();
+				String value = p.getProperty(key);
+				
+				Class className = Class.forName(value);
+				Object obj = className.newInstance();
+				
+				map.put(key, obj);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String uri = request.getRequestURI();
+		String view = "";
+		superAction action = null;
+		action = (superAction)map.get(uri);
+		view = action.executeAction(request, response);
+		
+		RequestDispatcher rd = request.getRequestDispatcher(view);
+		rd.forward(request, response);
+	}
+
+	
+	
+	
+}
+
+
+
+/*
+ Map map = new HashMap();
 
 	public void init(ServletConfig config) throws ServletException { //server실행하면 처음에만 한번 실행함
 		String path = config.getInitParameter("propertiesPath"); //web.xml에 설정해놓은 init-param의 경로를 가져온다.
@@ -40,17 +85,17 @@ public class Controller extends HttpServlet {
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		String uri = request.getRequestURI();
 		String view = "";
 			
 		superAction action = null;
 		action = (superAction)map.get(uri);
 		view = action.executeAction(request, response);
-			
-		HttpSession session = request.getSession();
 		
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
-	}
+	} 
+ */
 
-}
+

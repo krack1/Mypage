@@ -10,6 +10,7 @@
 </head>
 <body>
 <%request.setCharacterEncoding("utf-8"); %>
+
 <jsp:useBean id="boarddto" class="test.bean.BoardDto">
 <jsp:setProperty property="*" name="boarddto" />
 </jsp:useBean>

@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<center><input type="button" value ="JAEHO" onclick ="location.href='login.hjh'" class="buttontitle"/><br /><br /></center>
 <%request.setCharacterEncoding("utf-8"); %>
 <%
 	int num = Integer.parseInt(request.getParameter("num"));

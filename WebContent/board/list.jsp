@@ -20,6 +20,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <%request.setCharacterEncoding("utf-8"); %>
 
 <%
@@ -55,6 +56,7 @@ String id = request.getParameter("search");
 	
 %>
 <center>
+<input type="button" value ="JAEHO" onclick ="location.href='login.hjh'" class="buttontitle"/><br /><br />
 전체글 : <%=count %><br />
 <%if(count == 0) {
 	if(session.getAttribute("memid") != null) {

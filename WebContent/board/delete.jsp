@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<center><input type="button" value ="JAEHO" onclick ="location.href='login.hjh'" class="buttontitle"/><br /><br /></center>
 <%int num = Integer.parseInt(request.getParameter("num"));
 String pageNum = request.getParameter("pageNum");
 %>

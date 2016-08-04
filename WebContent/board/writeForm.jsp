@@ -16,6 +16,7 @@
 <title>Insert title here</title>
 </head>
 <%request.setCharacterEncoding("utf-8"); %>
+<center><input type="button" value ="JAEHO" onclick ="location.href='login.hjh'" class="buttontitle"/><br /><br /></center>
 <%
 	Dao dao = Dao.getInstance();
 	String id = session.getAttribute("memid").toString();
