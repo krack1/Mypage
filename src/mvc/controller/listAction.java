@@ -46,7 +46,8 @@ public class listAction implements superAction{
 					}
 				}
 				
-
+				request.setAttribute("pageNum", pageNum);
+				request.setAttribute("id", id);
 				request.setAttribute("pageSize", pageSize);
 				request.setAttribute("currentPgae", currentPage );
 				request.setAttribute("startRow", startRow );
@@ -54,6 +55,8 @@ public class listAction implements superAction{
 				request.setAttribute("count", count);
 				request.setAttribute("number", number );
 				request.setAttribute("articleList", articleList);
+				
+				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
