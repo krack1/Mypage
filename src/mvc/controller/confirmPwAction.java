@@ -5,6 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class confirmPwAction implements superAction {
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
-		return "/home/confirmPw.jsp";
+		return "/board/confirmPw.jsp";
 	}
 }

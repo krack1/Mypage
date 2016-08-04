@@ -5,6 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class writeFormActAction implements superAction{
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
-		return "/home/writeFormAct.jsp";
+		return "/board/writeFormAct.jsp";
 	}
 }

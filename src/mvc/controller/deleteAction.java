@@ -5,6 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class deleteAction implements superAction{
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
-		return "/home/delete.jsp";
+		return "/board/delete.jsp";
 	}
 }

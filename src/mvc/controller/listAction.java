@@ -5,6 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class listAction implements superAction{
 	public String executeAction(HttpServletRequest request, HttpServletResponse response) {
-		return "/home/list.jsp";
+		return "/board/list.jsp";
 	}
 }
