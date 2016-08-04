@@ -23,10 +23,6 @@
 </head>
 <body>
 
-<%
-
-	
-%>
 <center>
 <input type="button" value ="JAEHO" onclick ="location.href='login.hjh'" class="buttontitle"/><br /><br />
 전체글 : ${count } <br />
@@ -36,7 +32,7 @@
 		<table>
 			<tr>
 				<td>
-					<a href="writeForm.hjh?pageNum=${currentPage }&re=0">글쓰기</a>
+					<a href="writeForm.hjh?pageNum=${currentPage}&re=0">글쓰기</a>
 				</td>
 			</tr>
 		</table>
@@ -110,7 +106,7 @@
 				</td>
 				<c:set var="padding" value="${boarddto.re_level * 10 }"/>
 				<td style="padding: 0px 0px 0px ${padding}px;">
-					 <a href = "/Mypage/board/confirmPw.jsp?num=${boarddto.num }&pageNum=${currentPage }&writer=${boarddto.write}">${boarddto.subject}</a>
+					 <a href = "confirmPw.hjh?num=${boarddto.num }&pageNum='${currentPage}'&writer=${boarddto.writer}">${boarddto.subject}</a>
 				</td>
 				<td>
 					${boarddto.writer }
@@ -130,33 +126,30 @@
 	
 	</c:if>
 	<c:if test="${id == null }">
-		<%for(int i = 0 ; i < articleList.size(); i++) {
-		BoardDto boarddto = (BoardDto)articleList.get(i);
-	%>
-	<tr>
-		<td>
-			<%= boarddto.getNum() %>
-		</td>
-		<%int padding = boarddto.getRe_level()*10; %>
-		<td align="left" style="padding: 0px 0px 0px <%=padding%>px;">
-			 <a href = "/Mypage/board/confirmPw.jsp?num=<%=boarddto.getNum()%>&pageNum=<%=currentPage%>&writer=<%= boarddto.getWriter()%>"><%= boarddto.getSubject() %></a>
-		</td>
-		<td>
-			<%= boarddto.getWriter() %>
-		</td>
-		<td>
-			<%= sdf.format(boarddto.getReg_date()) %>
-		</td>
-		<td>
-			<%= boarddto.getReadcount() %>
-		</td>
-		<td>
-			<%= boarddto.getIp() %>
-		</td>		
-	</tr>
-	
-	<%}%>
-	
+		<c:forEach var="boarddto" items="${articleList}">
+			<tr>
+				<td>
+					${boarddto.num }
+				</td>
+				<c:set var="padding" value="${boarddto.re_level*10 }" />
+				
+				<td align="left" style="padding: 0px 0px 0px ${padding}px;">
+					 <a href = "confirmPw.hjh?num=${boarddto.num }&pageNum=${currentPage}&writer=${boarddto.writer}">${boarddto.subject}</a>
+				</td>
+				<td>
+					${boarddto.writer}
+				</td>
+				<td>
+					${boarddto.reg_date }
+				</td>
+				<td>
+					${boarddto.readcount }
+				</td>
+				<td>
+					${boarddto.ip }
+				</td>		
+			</tr>
+		</c:forEach>
 	</c:if>
 	</table>
 </c:if>
@@ -165,8 +158,9 @@
 <c:if test="${id != null}">
 
 <c:set var="pageCount" value="${count /pageSize + (count % pageSize == 0 ? 0 : 1) }" />
-<c:set var="startPage" value="${(currentPage /10)*10+1 }" />
-<c:set var="pageBlock" value="${10 }" />
+<fmt:parseNumber var="result" value="${currentPage / 10}" integerOnly="true" />
+<c:set var="startPage" value="${(result / 10) * 10 + 1 }" />
+<c:set var="pageBlock" value="${10}" />
 <c:set var="endPage" value="${startPage + pageBlock -1 }" />
 
 	<c:if test="${count > pageSize }" >
@@ -174,37 +168,38 @@
 			<c:set var="endPage" value="${pageCount}" />
 		</c:if>
 		<c:if test="${pageCount > 10 && currentPage > 10 }">
-			<a href="list.hjh?pageNum=<%=startPage-10 %>&search=<%=id%>">[이전]</a>
+			<a href="list.hjh?pageNum=${startPage - 10}&search=${id}">[이전]</a>
 		</c:if>
-		<%for(int i = startPage ; i <= endPage ; i++) {%>
-			<a href="list.hjh?pageNum=<%=i %>&search=<%=id%>">[<%=i %>]</a>
-		<%}%>
+		<c:forEach var="i" begin="${startPage}" end="${endPage}">
+			<a href="list.hjh?pageNum=${i}&search=${id}">[${i}]</a>
+		</c:forEach>
 		<c:if test="${endPage < pageCount }">
-			<a href="list.hjh?pageNum=<%=startPage+10 %>&search=<%=id%>">[다음]</a>
+			<a href="list.hjh?pageNum=${startPage + 10}&search=${id}">[다음]</a>
 		</c:if>
 	
 	</c:if>
 </c:if>
 
 
-<c:if test="${id == null}">
-<c:set var="pageCount" value="${count /pageSize + (count % pageSize == 0 ? 0 : 1) }" />
-<c:set var="startPage" value="${(currentPage /10)*10+1 }" />
-<c:set var="pageBlock" value="${10 }" />
+<c:if test="${id == null}" >
+<c:set var="pageCount" value="${count / pageSize + (count % pageSize == 0 ? 0 : 1) }" />
+<c:set var="pageBlock" value="${10}" />
+<fmt:parseNumber var="result" value="${currentPage / 10}" integerOnly="true" />
+<c:set var="startPage" value="${(result / 10) * 10 + 1 }" />
 <c:set var="endPage" value="${startPage + pageBlock -1 }" />
 
-	<c:if test="${count > pageSize }" >
-		<c:if test="${endPage > pageCount }">
+	<c:if test="${count > pageSize}" >
+		<c:if test="${endPage > pageCount}">
 			<c:set var="endPage" value="${pageCount }" />
 		</c:if>
 		<c:if test="${pageCount > 10 && currentPage > 10 }">
-			<a href="list.hjh?pageNum=<%=startPage-10 %>">[이전]</a>
+			<a href="list.hjh?pageNum=${startPage - 10}">[이전]</a>
 		</c:if>
-		<%for(int i = startPage ; i <= endPage ; i++) {%>
-		<a href="list.hjh?pageNum=<%=i %>">[<%=i %>]</a>
-		<%}	%>
+		<c:forEach var="i" begin="${startPage}" end="${endPage}">
+			<a href="list.hjh?pageNum=${i}">[${i}]</a>
+		</c:forEach>
 		<c:if test="${endPage < pageCount }">
-			<a href="list.hjh?pageNum=<%=startPage+10 %>">[다음]</a>
+			<a href="list.hjh?pageNum=${startPage + 10}">[다음]</a>
 		</c:if>
 	
 	</c:if>	

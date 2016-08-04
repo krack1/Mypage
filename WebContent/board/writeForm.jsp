@@ -38,7 +38,7 @@
 	}
 %>
 <body>
-<form name="orderForm" action="/Mypage/board/writeFormAct.jsp?pageNum=<%=pageNum %>&re=<%=re %>" method="post" onSubmit="return ok()" >
+<form name="orderForm" action="writeFormAct.hjh?pageNum=<%=pageNum %>&re=<%=re %>" method="post" onSubmit="return ok()" >
 <input type="hidden" name="num" value="<%=num %>">
 <input type="hidden" name="ref" value="<%=ref %>">
 <input type="hidden" name="re_step" value="<%=re_step %>">
@@ -77,7 +77,7 @@
 			<td colspan="2" align="right" >
 			<input type="submit" value="작성" class ="boardbutton" />
 			<input type="reset" value="제거" class ="boardbutton" />
-			<input type="button" value="목록" onclick="window.location='/Mypage/board/list.jsp?pageNum=<%=pageNum%>'" class ="boardbutton" /> 
+			<input type="button" value="목록" onclick="window.location='list.hjh?pageNum=<%=pageNum%>'" class ="boardbutton" /> 
 			</td>
 		</tr>
 	</table>

@@ -15,12 +15,12 @@
 String pageNum = request.getParameter("pageNum");
 %>
 <% if(session.getAttribute("memid").equals("krack1")){
-		response.sendRedirect("/Mypage/board/deleteAct.jsp?num="+num+"&pageNum="+pageNum);
+		response.sendRedirect("deleteAct.hjh?num="+num+"&pageNum="+pageNum);
 	}else{%>
-	<form action="/Mypage/board/deleteAct.jsp?pageNum=<%=pageNum %>" method="post">
+	<form action="deleteAct.hjh?pageNum=<%=pageNum %>" method="post">
 	암호를 입력하세요<input type="password" name="passwd"/>
 	<input type="hidden" name="num" value="<%=num %>" />
-	<input type="submit" value="삭제" /><input type="button" value="글목록" onclick="document.location.href='/Mypage/board/list.jsp?pageNum=<%=pageNum%>'"/>
+	<input type="submit" value="삭제" /><input type="button" value="글목록" onclick="document.location.href='list.hjh?pageNum=<%=pageNum%>'"/>
 	</form>
 <%}%>
 

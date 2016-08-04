@@ -15,7 +15,6 @@ public class listAction implements superAction{
 			request.setCharacterEncoding("utf-8");
 			
 			int pageSize = 6;
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String pageNum = request.getParameter("pageNum");
 			String id = request.getParameter("search");
 				if(pageNum == null) {
@@ -49,7 +48,7 @@ public class listAction implements superAction{
 				request.setAttribute("pageNum", pageNum);
 				request.setAttribute("id", id);
 				request.setAttribute("pageSize", pageSize);
-				request.setAttribute("currentPgae", currentPage );
+				request.setAttribute("currentPage", currentPage );
 				request.setAttribute("startRow", startRow );
 				request.setAttribute("endRow", endRow );
 				request.setAttribute("count", count);

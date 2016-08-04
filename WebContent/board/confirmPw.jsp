@@ -19,14 +19,14 @@
 	String writer = request.getParameter("writer");
 %>
 <%if(session.getAttribute("memid").equals("krack1")){
-	response.sendRedirect("/Mypage/board/content.jsp?num="+num+"&pageNum="+pageNum+"&writer="+writer);
+	response.sendRedirect("content.hjh?num="+num+"&pageNum="+pageNum+"&writer="+writer);
 }
 %>
 <%if(writer.equals(session.getAttribute("memid"))){ %>
-<form action="/Mypage/board/content.jsp?num=<%=num%>&pageNum=<%=pageNum%>&writer=<%=writer%>" method="post">
+<form action="content.hjh?num=<%=num%>&pageNum=<%=pageNum%>&writer=<%=writer%>" method="post">
 비밀번호<input type="password" name="passwd" />
 <input type="submit" value="확인" />
-<input type="button" value="글목록" onclick="document.location.href='/Mypage/board/list.jsp?pageNum=<%=pageNum %>'" />
+<input type="button" value="글목록" onclick="document.location.href='/list.hjh?pageNum=<%=pageNum %>'" />
 
 </form>
 <%}else{%>

@@ -24,7 +24,7 @@
 	System.out.println(result);
 	
 	if(result == 1) {
-		response.sendRedirect("/Mypage/board/content.jsp?num="+boarddto.getNum()+"&pageNum="+request.getParameter("pageNum").toString()+"&ok=1");
+		response.sendRedirect("content.hjh?num="+boarddto.getNum()+"&pageNum="+request.getParameter("pageNum").toString()+"&ok=1");
 	}else{%>
 		<script>
 			alert("비밀번호가 틀렸습니다.");

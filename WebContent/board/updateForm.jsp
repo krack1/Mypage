@@ -28,7 +28,7 @@
 	
 %>
 
-	<form action = "/Mypage/board/updateAct.jsp?pageNum=<%=pageNum%>" method="post">
+	<form action = "updateAct.hjh?pageNum=<%=pageNum%>" method="post">
 	<input type="hidden" name="num" value="<%=num %>" />
 	<input type="hidden" name="pageNum" value="<%=pageNum %>" />
 	<input type="hidden" name="writer" value="<%=boarddto.getWriter()%>" />
@@ -59,7 +59,7 @@
 			<td colspan="2" align="right">
 			<input type="submit" value="수정" class="boardbutton" />
 			<input type="reset" value="취소" class="boardbutton" />
-			<input type="button" value="목록" onclick="window.location='/Mypage/board/list.jsp?pageNum=<%=pageNum%>'" class="boardbutton" /> 
+			<input type="button" value="목록" onclick="window.location='list.hjh?pageNum=<%=pageNum%>'" class="boardbutton" /> 
 			</td>
 		</tr>
 	</table>

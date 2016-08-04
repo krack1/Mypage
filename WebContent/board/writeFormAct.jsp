@@ -21,10 +21,10 @@
 	boarddao.insertArticle(boarddto);
 	
 	if(request.getParameter("re").equals("1")){
-		response.sendRedirect("/Mypage/board/list.jsp?pageNum="+request.getParameter("pageNum").toString());
+		response.sendRedirect("list.hjh?pageNum="+request.getParameter("pageNum").toString());
 	}
 	else{
-		response.sendRedirect("/Mypage/board/list.jsp");
+		response.sendRedirect("list.hjh");
 	}
 	
 %>

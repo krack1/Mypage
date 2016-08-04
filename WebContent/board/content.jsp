@@ -68,13 +68,13 @@
 		<tr>
 			<td colspan="4" align="right">
 			<%if(session.getAttribute("memid") != null) { %>
-			<input type="button" value="수정" onclick="document.location.href='/Mypage/board/updateForm.jsp?num=<%=num%>&pageNum=<%=pageNum%>'" class="boardbutton" />
-			<input type="button" value="삭제" onclick="document.location.href='/Mypage/board/delete.jsp?num=<%=num%>&pageNum=<%=pageNum%>'" class="boardbutton" />
+			<input type="button" value="수정" onclick="document.location.href='updateForm.hjh?num=<%=num%>&pageNum=<%=pageNum%>'" class="boardbutton" />
+			<input type="button" value="삭제" onclick="document.location.href='delete.hjh?num=<%=num%>&pageNum=<%=pageNum%>'" class="boardbutton" />
 				<%if(session.getAttribute("memid").equals("krack1")) {%>
-					<input type="button" value="답글" onclick="document.location.href='/Mypage/board/writeForm.jsp?num=<%=num %>&ref=<%=ref %>&re_step=<%=re_step %>&re_level=<%=re_level %>&pageNum=<%=pageNum %>&re=1'" class="boardbutton" />
+					<input type="button" value="답글" onclick="document.location.href='writeForm.hjh?num=<%=num %>&ref=<%=ref %>&re_step=<%=re_step %>&re_level=<%=re_level %>&pageNum=<%=pageNum %>&re=1'" class="boardbutton" />
 				<%} %>
 			<%}%>
-			<input type="button" value="목록" onclick="document.location.href='/Mypage/board/list.jsp?pageNum=<%=pageNum %>'" class="boardbutton" />
+			<input type="button" value="목록" onclick="document.location.href='list.hjh?pageNum=<%=pageNum %>'" class="boardbutton" />
 			</td>		
 		</tr>
 	</table>
