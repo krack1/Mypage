@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    <%@page import = "test.bean.Dto" %>
-    <%@page import = "test.bean.Dao" %>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,25 +11,19 @@
 </head>
 <body>
 
-<%
-String pw = request.getParameter("pw");
-Dao dao = Dao.getInstance();
-boolean result = dao.delete(session.getAttribute("memid").toString(), pw);
-if(result == true) {
-session.invalidate();%>
+<c:if test="${result == true }">
 	<script>
-	alert("탈퇴가 정상적으로 이루어 졌습니다.");
-	location.href="login.hjh";
+		alert("탈퇴가 정상적으로 이루어 졌습니다.");
+		location.href="login.hjh";
 	</script>	
-<%
-}else{%>
+</c:if>
+<c:if test="${result == false }">
 	<script>
-	alert("비밀번호가 틀렸습니다. 다시 입력해주세요");
-	location.href="withdraw.hjh";
+		alert("비밀번호가 틀렸습니다. 다시 입력해주세요");
+		location.href="withdraw.hjh";
 	</script>
-<%	
-}
-%>
+</c:if>
+
 
 
 </body>

@@ -6,6 +6,8 @@
 	<%@page import = "test.bean.BoardDto" %> 
 	<%@page import = "java.util.*" %>
 	<%@page import = "java.sql.*" %>   
+	 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,38 +23,8 @@
 </head>
 <body>
 
-<%request.setCharacterEncoding("utf-8"); %>
-
 <%
-int pageSize = 6;
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-String pageNum = request.getParameter("pageNum");
-String id = request.getParameter("search");
-	if(pageNum == null) {
-		pageNum = "1";
-	}
-	
-	int currentPage = Integer.parseInt(pageNum);
-	int startRow = (currentPage - 1)* pageSize +1;
-	int endRow = currentPage*pageSize;
-	int count = 0;
-	int number = 0;
-	
-	List articleList = null;
-	BoardDao boarddao = BoardDao.getInstance();	
-	if(id != null){
-		count = boarddao.getSearchArticleCount(id);
-	}else{
-		count = boarddao.getArticleCount();
-	}
-	number = count - (currentPage - 1)*pageSize; 
-	if(count > 0) {
-		if(id != null){
-			articleList = boarddao.getSearchArticles(startRow, endRow, id);
-		}else{
-			articleList = boarddao.getArticles(startRow, endRow);
-		}
-	}
+
 	
 %>
 <center>

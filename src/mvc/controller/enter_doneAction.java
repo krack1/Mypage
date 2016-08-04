@@ -18,18 +18,18 @@ public class enter_doneAction implements superAction{
 		Dto dto = new Dto();
 		
 		String id = request.getParameter("id");
-		String pass1 = request.getParameter("id");
-		String pass2 = request.getParameter("id");
-		String birth = request.getParameter("id");
-		String sex = request.getParameter("id");
-		String address = request.getParameter("id");
-		String first_number = request.getParameter("id");
-		String second_number = request.getParameter("id");
-		String third_number = request.getParameter("id");
-		String email_id = request.getParameter("id");
-		String email_site_text = request.getParameter("id");
-		String receive = request.getParameter("id");
-		String interest = request.getParameter("id");
+		String pass1 = request.getParameter("pass1");
+		String pass2 = request.getParameter("pass2");
+		String birth = request.getParameter("birth");
+		String sex = request.getParameter("sex");
+		String address = request.getParameter("address");
+		String first_number = request.getParameter("first_number");
+		String second_number = request.getParameter("second_number");
+		String third_number = request.getParameter("third_number");
+		String email_id = request.getParameter("email_id");
+		String email_site_text = request.getParameter("email_site_text");
+		String receive = request.getParameter("receive");
+		String interest = request.getParameter("interest");
 		
 		dto.setId(id);
 		dto.setPass1(pass1);

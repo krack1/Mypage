@@ -47,7 +47,7 @@
 <%--세션이 있으면 로그인완료 페이지를 띄운다. --%>
 </c:if>
 <c:if test="${sessionScope.memid != null }">
-	id : ${sessionScope.memid }
+	id : ${sessionScope.memid}
 	<c:if test="${sessionScope.memid == 'krack1'}">
 
 		<table border="1">

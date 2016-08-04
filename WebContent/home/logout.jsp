@@ -12,15 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	session.invalidate();
-	Cookie cookie = new Cookie("cooid", "");
-	cookie.setMaxAge(0);
-	response.addCookie(cookie);
-	
-	response.sendRedirect("login.hjh");
-	
-%>
+
+<c:redirect url="login.hjh"/>
 
 </body>
 </html>
