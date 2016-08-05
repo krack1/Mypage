@@ -149,10 +149,33 @@
 </c:if>
 	
 
+<c:if test="${id != null}">
+
+<c:set var="pageCount" value="${count /pageSize + (count % pageSize == 0 ? 0 : 1) }" />
+<fmt:parseNumber var="result" value="${currentPage / 10}" integerOnly="true" />
+<c:set var="startPage" value="${(result / 10) * 10 + 1 }" />
+<c:set var="pageBlock" value="${10}" />
+<c:set var="endPage" value="${startPage + pageBlock -1 }" />
+
+	<c:if test="${count > pageSize }" >
+		<c:if test="${endPage > pageCount}">
+			<c:set var="endPage" value="${pageCount}" />
+		</c:if>
+		<c:if test="${pageCount > 10 && currentPage > 10 }">
+			<a href="list.hjh?pageNum=${startPage - 10}&search=${id}">[이전]</a>
+		</c:if>
+		<c:forEach var="i" begin="${startPage}" end="${endPage}">
+			<a href="list.hjh?pageNum=${i}&search=${id}">[${i}]</a>
+		</c:forEach>
+		<c:if test="${endPage < pageCount }">
+			<a href="list.hjh?pageNum=${startPage + 10}&search=${id}">[다음]</a>
+		</c:if>
+	
+	</c:if>
+</c:if>
 
 
-
-
+<c:if test="${id == null}" >
 <c:set var="pageCount" value="${count / pageSize + (count % pageSize == 0 ? 0 : 1) }" />
 <c:set var="pageBlock" value="${10}" />
 <fmt:parseNumber var="result" value="${currentPage / 10}" integerOnly="true" />
@@ -174,11 +197,28 @@
 		</c:if>
 	
 	</c:if>	
+</c:if>
 
-
-<form name="orderForm" action="list.hjh" method="get">
+<form name="orderForm" action="list.hjh" method="get" onSubmit="return search_ok()">
 <input type="text" name="search" style="width:100px; margin:10px 10px 0px 0px;" /><input type="submit" value="검색" class="boardbutton"/>
 </form>
 </center>
 </body>
+
+<script type="text/javascript">
+	function search_ok() {
+		var search = document.orderForm.search.value;
+		
+		if(search.length <= 1){
+			alert("2자 이상 입력하세요");
+			return false;
+		}
+	}
+</script>
+
+
+
+
+
+
 </html>
