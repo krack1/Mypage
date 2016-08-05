@@ -152,9 +152,10 @@
 <script type="text/javascript">
 	var checked_pass = false;
 	var checked_id = false;
-	var RegExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+	var RegExp = "~!@#$%^&*()_+|{}:\\\"\'<>?`[];,./";
 	var emailExp = /^[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	var hanExp = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힝]/;
+	
 	<%--아이디에 한글 특수문자 사용 여부 확인--%>
 	function check_id(inputid) {
 		if(inputid.id.value =="") {
@@ -168,12 +169,14 @@
 			checked_id = false;
 			return;
 		 }
-		else if(RegExp.test(inputid.id.value)) {
-			alert("특수문자 사용 금지");
-			document.orderForm.id.value = "";
-			checked_id = false;
-			return;				
-		}		
+		for(var i = 0 ; i < inputid.id.value.length ; i++){
+			if(RegExp.indexOf(inputid.id.value.charAt(i)) != -1){
+				alert("특수문자 사용 금지");
+				document.orderForm.id.value = "";
+				checked_id = false;
+				return;
+			}								
+		}	
 		checked_id = true;
 		url = "confirmId.hjh?id=" + inputid.id.value;
 		open(url, "confirm", "toolbar=no, location=no, scrollbars=no, resizeable=no,width=300, height=180");
@@ -189,23 +192,28 @@
 		
 		if(pass1 == "" || pass2 =="") {
 			document.getElementById("pass_ok").innerHTML = "비밀번호를 입력하세요";
-			return;
+			checked_pass = false;
 		}
-		else if(pass1 == pass2 && RegExp.test(pass1)) {
-			document.getElementById("pass_ok").innerHTML = "비밀번호가 일치합니다.";
-			checked_pass = true;
-			return;
+		else{
+			if(pass1 == pass2) {
+				
+				for(var i = 0 ; i < pass1.length ; i++){
+					if(RegExp.indexOf(pass1.charAt(i)) != -1){
+						document.getElementById("pass_ok").innerHTML = "비밀번호가 일치합니다.";
+						checked_pass = true;
+						return true;
+					}								
+				}
+				document.getElementById("pass_ok").innerHTML = "비밀번호에는 특수문자가 하나 이상 들어가야합니다.";
+				checked_pass = false;
+				return false;
+			}
+			else {
+				document.getElementById("pass_ok").innerHTML = "비밀번호가 일치하지 않습니다.";
+				checked_pass = false;
+			}
 		}
-		else if(pass1 == pass2 && !RegExp.test(pass1)) {
-			document.getElementById("pass_ok").innerHTML = "비밀번호에는 특수문자가 하나 이상 들어가야합니다.";
-			return;
-		}
-		else if(pass1 != pass2) {
-			document.getElementById("pass_ok").innerHTML = "비밀번호가 일치하지 않습니다.";
-			return;
-		}
-		
-		
+
 	}
 	
 	function change_text() {

@@ -29,13 +29,12 @@ public class Controller extends HttpServlet {
 			is = new FileInputStream(path);
 			p.load(is);
 			Iterator it = p.keySet().iterator();
-			while(it.hasNext()){
-				String key = it.next().toString();
+			while(it.hasNext()) {
+				String key = (String) it.next();
 				String value = p.getProperty(key);
 				
 				Class className = Class.forName(value);
 				Object obj = className.newInstance();
-				
 				map.put(key, obj);
 			}
 		}catch(Exception e){
@@ -44,9 +43,11 @@ public class Controller extends HttpServlet {
 		
 	}
 	
+
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uri = request.getRequestURI();
 		String view = "";
+		
 		superAction action = null;
 		action = (superAction)map.get(uri);
 		view = action.executeAction(request, response);
