@@ -15,18 +15,14 @@ public class contentAction implements superAction {
 		HttpSession session = request.getSession();
 		try {
 			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		int num = Integer.parseInt(request.getParameter("num"));
-		String pageNum = request.getParameter("pageNum");
-		String writer = request.getParameter("writer");
-		String passwd = request.getParameter("passwd");
-		String ok = request.getParameter("ok");
-		
-		try{
+			
+			int num = Integer.parseInt(request.getParameter("num"));
+			String pageNum = request.getParameter("pageNum");
+			String writer = request.getParameter("writer");
+			String passwd = request.getParameter("passwd");
+			String ok = request.getParameter("ok");
+			
+			
 			BoardDao boarddao = BoardDao.getInstance();
 			BoardDto boarddto = boarddao.getArticle(num);
 			
@@ -43,15 +39,16 @@ public class contentAction implements superAction {
 			request.setAttribute("boarddto", boarddto);
 			session.getAttribute("memid");
 			
-			
-		}catch(Exception e){
+			request.setAttribute("num", num);
+			request.setAttribute("pageNum", pageNum);
+			request.setAttribute("writer", writer);
+			request.setAttribute("passwd", passwd);
+			request.setAttribute("ok", ok);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("num", num);
-		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("writer", writer);
-		request.setAttribute("passwd", passwd);
+		
 		
 		
 		return "/board/content.jsp";

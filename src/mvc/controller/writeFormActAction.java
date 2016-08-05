@@ -40,8 +40,10 @@ public class writeFormActAction implements superAction{
 			BoardDao boarddao = BoardDao.getInstance();
 			boarddao.insertArticle(boarddto);
 			String re = request.getParameter("re");
+			String pageNum = request.getParameter("pageNum");
 			
 			request.setAttribute("re", re);
+			request.setAttribute("pageNum", pageNum);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
