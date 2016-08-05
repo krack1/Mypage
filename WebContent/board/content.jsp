@@ -1,11 +1,6 @@
 
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    <%@page import = "test.bean.BoardDao" %>
-    <%@page import = "test.bean.BoardDto" %>
-    <%@page import = "java.util.*" %>
-    <%@page import = "java.sql.*" %>
-    <%@page import="java.text.SimpleDateFormat"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
