@@ -14,32 +14,32 @@ public class Dao {
 	private ResultSet rs = null;
 	
 	
-	private static Dao dao = new Dao(); //ï¿½Ì±ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	private static Dao dao = new Dao(); //½Ì±Û ÀÎ½ºÅÏ½º ¼±¾ð ¿ÜºÎ¿¡¼­ °´Ã¼¸¦ »ý¼ºÇÏÁö ¸øÇÏµµ·ÏÇÑ´Ù.
 	private Dao() {};
 	public static Dao getInstance() {
 		return dao;
 	}
 	
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	//¼­¹ö¿¡ Á¢¼ÓÇÑ´Ù.
 	private Connection getConnection() throws Exception {
 		/*Class.forName("oracle.jdbc.driver.OracleDriver");
 		String url = "jdbc:oracle:thin:@masterkh.iptime.org:7000:orcl";
 		conn = DriverManager.getConnection(url, "java02", "java02");*/
-		Context ctx = new InitialContext();  //contextï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð´Â´ï¿½.
-		Context env = (Context)ctx.lookup("java:comp/env"); // ï¿½ï¿½ï¿½ß¿ï¿½ï¿½ï¿½ ï¿½Ú¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½.
-		DataSource ds = (DataSource)env.lookup("jdbc/jsptest"); // ï¿½ï¿½ï¿½ß¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ jdbcï¿½ï¿½/jsptestï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Úµå¸¦ ï¿½Ò·ï¿½ï¿½Â´ï¿½.
+		Context ctx = new InitialContext();  //contextÀÇ ¸ðµç Àúº¸¸¦ ÀÐ´Â´Ù.
+		Context env = (Context)ctx.lookup("java:comp/env"); // ±×Áß¿¡¼­ ÀÚ¹Ù °ü·Ã ÄÚµå¸¦ º»´Ù.
+		DataSource ds = (DataSource)env.lookup("jdbc/jsptest"); // ±×Áß¿¡¼­ ÁöÁ¤ÇÑ jdbc·Î/jsptest°¡ ÀÖ´Â ÄÚµå¸¦ ºÒ·¯¿Â´Ù.
 		conn = ds.getConnection();
 		return conn;
 	}
 	
-	//select query ï¿½ï¿½ï¿½ï¿½
-	public ArrayList<Dto> select() { //ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ arrayListï¿½ï¿½ ï¿½Ñ´ï¿½. 
+	//select query ½ÇÇà
+	public ArrayList<Dto> select() { //¸®ÅÏÅ¸ÀÔÀ» arrayList·Î ÇÑ´Ù. 
 		ArrayList<Dto> list = new ArrayList<Dto>();
 		try {			
 			conn = getConnection();
 			pstmt = conn.prepareStatement("select * from member_info");
 			rs = pstmt.executeQuery();
-			//rsï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ Dtoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Dtoï¿½ï¿½ ArrayListï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+			//rs¸¦ ÅëÇØ ÀÐ¾îµéÀÎ µ¥ÀÌÅÍµéÀ» Dto¿¡ ÀúÀåÇÏ¿© Dto¸¦ ArrayList¿¡ ÀúÀåÇÑ´Ù.
 			while(rs.next()) {
 				Dto dto = new Dto();
 				dto.setId(rs.getString("id"));
@@ -68,10 +68,10 @@ public class Dao {
 		return list;
 	}
 	
-	public void insert(Dto dto) { //ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Dtoï¿½ï¿½ ï¿½Þ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½Ö´ï¿½ dtoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
+	public void insert(Dto dto) { //¸Å°³º¯¼ö·Î Dto¸¦ ¹Þ¾Æ µ¥ÀÌÅÍ°¡ ÀúÀåµÇ¾îÀÖ´Â dto¸¦ °¡Á®¿Â´Ù.
 		try {
 			conn = getConnection();
-			//ï¿½Ô·Â¹ï¿½ï¿½ï¿½ dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ insert query ï¿½ï¿½ï¿½ï¿½
+			//ÀÔ·Â¹ÞÀº data¸¦ ÅëÇØ insert query ½ÃÇà
 			pstmt = conn.prepareStatement("insert into member_info values(?,?,?,?,?,?,?,?,?,?,?,?,sysdate)");
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPass1());
@@ -154,7 +154,7 @@ public class Dao {
 		boolean result = false;
 		try {
 			conn = getConnection();
-			//ï¿½Ô·Â¹ï¿½ï¿½ï¿½ dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ insert query ï¿½ï¿½ï¿½ï¿½
+			//ÀÔ·Â¹ÞÀº data¸¦ ÅëÇØ insert query ½ÃÇà
 			pstmt = conn.prepareStatement("delete from member_info where id = ? and pw = ?");
 			pstmt.setString(1, login_id);
 			pstmt.setString(2, login_pw);
@@ -182,7 +182,7 @@ public class Dao {
 		Dto dto = new Dto();
 		try {
 			conn = getConnection();
-			//ï¿½Ô·Â¹ï¿½ï¿½ï¿½ dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ insert query ï¿½ï¿½ï¿½ï¿½
+			//ÀÔ·Â¹ÞÀº data¸¦ ÅëÇØ insert query ½ÃÇà
 			pstmt = conn.prepareStatement("select * from member_info where id = ?");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -218,7 +218,7 @@ public class Dao {
 	public void updateInfo(Dto dto) {
 		try {
 			conn = getConnection();
-			//ï¿½Ô·Â¹ï¿½ï¿½ï¿½ dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ insert query ï¿½ï¿½ï¿½ï¿½
+			//ÀÔ·Â¹ÞÀº data¸¦ ÅëÇØ insert query ½ÃÇà
 			pstmt = conn.prepareStatement("update member_info set pw = ?, address = ?, first_number = ?, second_number = ?, third_number = ?, email_id = ?, email_site = ?, email_receive = ?, interest = ? where  id = ?  ");
 			
 			pstmt.setString(1, dto.getPass1());
@@ -262,30 +262,6 @@ public class Dao {
 		}
 		
 		return result;
-	}
-	
-	public ArrayList<String> checkId(String first_number, String second_number, String third_number){
-		
-		ArrayList<String> list = new ArrayList<String>();
-		try {			
-			conn = getConnection();
-			pstmt = conn.prepareStatement("select id from member_info where first_number = ? and second_number = ? and third_number = ? ");
-			pstmt.setString(1, first_number);
-			pstmt.setString(2, second_number);
-			pstmt.setString(3, third_number);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {				
-				list.add(rs.getString("id"));
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally{
-			try {if(rs != null)rs.close();}catch(SQLException s) {s.printStackTrace();}
-			try {if(pstmt != null)pstmt.close();}catch(SQLException s) {s.printStackTrace();}
-			try {if(conn != null)conn.close();}catch(SQLException s) {s.printStackTrace();}
-		}
-		
-		return list;
 	}
 
 }

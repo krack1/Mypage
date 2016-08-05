@@ -39,9 +39,7 @@
     </div>
     </div>
     <input type="button" value="회원가입" onclick="location.href='enter.hjh'" class="button" />
-    <input type="button" value="아이디찾기" onclick="location.href='findId.hjh'" class="button" />
-    
-    <br /><input type="button" value="게시판" onclick="location.href='list.hjh'" class="button" /><br />
+    <input type="button" value="게시판" onclick="location.href='list.hjh'" class="button" /><br />
     <input type="checkbox" name="keeplogin" value="on"><font size="2">로그인상태 유지하기</font>
 </form>
 <%--세션이 있으면 로그인완료 페이지를 띄운다. --%>
