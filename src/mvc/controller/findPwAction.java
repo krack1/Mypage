@@ -24,8 +24,8 @@ public class findPwAction implements superAction{
 	        int port=465;
 	         
 	        String recipient = "hyungjh1@gmail.com";
-	        String subject = "제목테스트";
-	        String body = "내용테스트";
+	        String subject = "LEDhouse 비밀번호찾기 인증번호입니다.";
+	        
 	         
 	        Properties props = System.getProperties();
 	         
@@ -49,7 +49,7 @@ public class findPwAction implements superAction{
 	        mimeMessage.setFrom(new InternetAddress("krack1@naver.com"));
 	        mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 	        mimeMessage.setSubject(subject);
-	        mimeMessage.setText("인증번호는 : " + checknum);
+	        mimeMessage.setText("인증번호 : " + checknum);
 	        Transport.send(mimeMessage);
 	        
 	       
