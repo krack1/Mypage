@@ -10,5 +10,6 @@
 </head>
 <body>
 ${pw}
+<input type="button" value="홈으로" onclick="window.location.href='login.hjh'" />
 </body>
 </html>
