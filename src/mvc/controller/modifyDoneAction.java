@@ -29,7 +29,7 @@ public class modifyDoneAction implements superAction{
 		String email_id = request.getParameter("email_id");
 		String email_site_text = request.getParameter("email_site_text");
 		String receive = request.getParameter("receive");
-		String interest = request.getParameter("interest");
+		String name = request.getParameter("name");
 		
 
 		dto.setPass1(pass1);
@@ -41,7 +41,7 @@ public class modifyDoneAction implements superAction{
 		dto.setEmail_id(email_id);
 		dto.setEmail_site_text(email_site_text);
 		dto.setReceive(receive);
-		dto.setInterest(interest);
+		dto.setname(name);
 		
 		HttpSession session = request.getSession();
 		dto.setId((String)session.getAttribute("memid"));

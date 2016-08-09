@@ -52,9 +52,13 @@
 
 <table border = "1" align ="center" style = "width: 420px; height:420px;">
 	<tr>
+		<td>	
+			&nbsp;&nbsp;<input type="text" placeholder = "이름" name="name" style="font-size:14pt; width: 80px; border-right:0px; border-left:0px; border-top:0px;  border-bottom:0px;"/>		
+		</td>
+	</tr>
+	<tr>
 		<td>&nbsp;&nbsp;<input type="text" name="birth" placeholder ="생년월일" maxlength="6" style="font-size:14pt; width: 200px; border-right:0px; border-left:0px; border-top:0px; border-bottom:0px;"/>
 		<font color = "blue" size="2">※주민등록번호 앞번호 6자리</font></td>
-		</td>
 				
 	</tr>
 	<tr>
@@ -116,31 +120,7 @@
 			<input type="radio" name="receive" value="no" /> 아니오 
 		</td>
 	</tr>
-	<tr>
-		<td>
-			<div class="title">취미</div>
-			<select name="interest" style ="font-size:10pt;">
-					<option selected value="">
-						목록
-					</option>
-					<option value="패션">
-						패션
-					</option>
-					<option value="운동">
-						운동
-					</option>
-					<option value="게임">
-						게임
-					</option>
-					<option value="영화">
-						영화
-					</option>
-					<option value="여행">
-						여행
-					</option>
-				</select>
-		</td>
-	</tr>
+	
 	
 
 </table>

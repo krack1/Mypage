@@ -34,7 +34,7 @@ public class modifyAction implements superAction{
 		request.setAttribute("email_id", dto.getEmail_id());
 		request.setAttribute("email_site_text",dto.getEmail_site_text());
 		request.setAttribute("receive",dto.getReceive());
-		request.setAttribute("interest",dto.getInterest());
+		request.setAttribute("name",dto.getname());
 		
 		
 		return "/home/modify.jsp";

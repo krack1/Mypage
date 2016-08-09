@@ -57,6 +57,12 @@
 <table border = "1" align ="center" style = "width: 420px; height:420px;">
 	<tr>
 		<td>
+			<div class="title">이름</div>
+			<div class="content">${name }</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
 		<div class="title">생년월일</div>
 		<div class="content">${birth }</div>
 		</td>
@@ -157,144 +163,7 @@
 			</c:if>
 		</td>
 	</tr>
-	<tr>
-		<td>
-		<div class="title">취미</div>
-		<c:if test="${interest == '' }">
-			<select name="interest">
-					<option selected value="">
-						목록
-					</option>
-					<option value="패션">
-						패션
-					</option>
-					<option value="운동">
-						운동
-					</option>
-					<option value="게임">
-						게임
-					</option>
-					<option value="영화">
-						영화
-					</option>
-					<option value="여행">
-						여행
-					</option>
-				</select>
-		</c:if>
-		<c:if test="${interest == '패션' }">
-			<select name="interest">
-					<option value="">
-						목록
-					</option>
-					<option  selected value="패션">
-						패션
-					</option>
-					<option value="운동">
-						운동
-					</option>
-					<option value="게임">
-						게임
-					</option>
-					<option value="영화">
-						영화
-					</option>
-					<option value="여행">
-						여행
-					</option>
-				</select>
-		</c:if>
-		<c:if test="${interest == '운동' }">
-			<select name="interest">
-					<option value="">
-						목록
-					</option>
-					<option value="패션">
-						패션
-					</option>
-					<option selected value="운동">
-						운동
-					</option>
-					<option value="게임">
-						게임
-					</option>
-					<option value="영화">
-						영화
-					</option>
-					<option value="여행">
-						여행
-					</option>
-				</select>
-		</c:if>
-		<c:if test="${interest == '게임' }">
-			<select name="interest">
-					<option value="">
-						목록
-					</option>
-					<option value="패션">
-						패션
-					</option>
-					<option value="운동">
-						운동
-					</option>
-					<option selected value="게임">
-						게임
-					</option>
-					<option value="영화">
-						영화
-					</option>
-					<option value="여행">
-						여행
-					</option>
-				</select>
-		</c:if>
-		<c:if test="${interest == '영화' }">
-			<select name="interest">
-					<option value="">
-						목록
-					</option>
-					<option value="패션">
-						패션
-					</option>
-					<option value="운동">
-						운동
-					</option>
-					<option value="게임">
-						게임
-					</option>
-					<option selected value="영화">
-						영화
-					</option>
-					<option value="여행">
-						여행
-					</option>
-				</select>
-		</c:if>
-		<c:if test="${interest == '여행' }">
-			<select name="interest">
-					<option value="">
-						목록
-					</option>
-					<option value="패션">
-						패션
-					</option>
-					<option value="운동">
-						운동
-					</option>
-					<option value="게임">
-						게임
-					</option>
-					<option value="영화">
-						영화
-					</option>
-					<option selected value="여행">
-						여행
-					</option>
-				</select>
-		</c:if>
-
-		</td>
-	</tr>
+	
 	
 
 </table>

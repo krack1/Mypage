@@ -26,12 +26,22 @@
 </script>
 </head>
 <body>
-<form method="post" name="orderForm" action = "findPwAct.hjh" onSubmit="return check()">
-<input type="hidden" name="checknum" value="${checknum }" />
-<input type="text" name="inputnum" />
-<input type="submit" value="인증하기" />
+<c:if test="${result == true }" >
+	<form method="post" name="orderForm" action = "findPwAct.hjh" onSubmit="return check()">
+	<input type="hidden" name="id" value="${id}" />
+	<input type="hidden" name="checknum" value="${checknum }" />
+	<input type="text" name="inputnum" />
+	<input type="submit" value="인증하기" />
+	
+	</form>
+</c:if>
+<c:if test="${result == false }">
+	<script>
+		alert("정보가 일치하지 않습니다.");
+		window.location.href="findPwForm.hjh";
+	</script>
+</c:if>
 
-</form>
 
 </body>
 </html>

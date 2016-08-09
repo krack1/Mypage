@@ -29,7 +29,7 @@ public class enter_doneAction implements superAction{
 		String email_id = request.getParameter("email_id");
 		String email_site_text = request.getParameter("email_site_text");
 		String receive = request.getParameter("receive");
-		String interest = request.getParameter("interest");
+		String name = request.getParameter("name");
 		
 		dto.setId(id);
 		dto.setPass1(pass1);
@@ -43,7 +43,7 @@ public class enter_doneAction implements superAction{
 		dto.setEmail_id(email_id);
 		dto.setEmail_site_text(email_site_text);
 		dto.setReceive(receive);
-		dto.setInterest(interest);
+		dto.setname(name);
 		
 		Dao dao = Dao.getInstance();
 		

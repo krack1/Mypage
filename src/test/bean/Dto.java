@@ -15,7 +15,7 @@ public class Dto {
 	private String email_id;
 	private String email_site_text;
 	private String receive;
-	private String interest;	
+	private String name;	
 	private Timestamp reg_date;
 	private String login_id;
 	private String login_pw;
@@ -32,7 +32,7 @@ public class Dto {
 	public void setEmail_id(String email_id) {	this.email_id = email_id;	}
 	public void setEmail_site_text(String email_site_text) {	this.email_site_text = email_site_text;	}
 	public void setReceive(String receive) {	this.receive = receive;	}
-	public void setInterest(String interest) {	this.interest = interest;	}
+	public void setname(String name) {	this.name = name;	}
 	public void setReg_date(Timestamp reg_date) {		this.reg_date = reg_date;	}
 	public void setLogin_id(String login_id) {		this.login_id = login_id;	}
 	public void setLogin_pw(String login_pw) {	this.login_pw = login_pw;	}
@@ -51,7 +51,7 @@ public class Dto {
 	public String getEmail_id() {	return this.email_id;	}
 	public String getEmail_site_text() {	return this.email_site_text;	}
 	public String getReceive() {	return this.receive;	}
-	public String getInterest() {	return this.interest;	}
+	public String getname() {	return this.name;	}
 	public Timestamp getReg_date() { return this.reg_date;}
 	public String getLogin_id() { return this.login_id;}
 	public String getLogin_pw() { return this.login_pw;}

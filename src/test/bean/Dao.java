@@ -53,7 +53,7 @@ public class Dao {
 				dto.setEmail_id(rs.getString("email_id"));
 				dto.setEmail_site_text(rs.getString("email_site"));
 				dto.setReceive(rs.getString("email_receive"));
-				dto.setInterest(rs.getString("interest"));
+				dto.setname(rs.getString("name"));
 				dto.setReg_date(rs.getTimestamp("reg"));
 				list.add(dto);				
 			}
@@ -72,7 +72,7 @@ public class Dao {
 		try {
 			conn = getConnection();
 			//�Է¹��� data�� ���� insert query ����
-			pstmt = conn.prepareStatement("insert into member_info values(?,?,?,?,?,?,?,?,?,?,?,?,sysdate)");
+			pstmt = conn.prepareStatement("insert into member_info values(?,?,?,?,?,?,?,?,?,?,?,sysdate,?)");
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPass1());
 			pstmt.setString(3, dto.getBirth());
@@ -84,7 +84,7 @@ public class Dao {
 			pstmt.setString(9, dto.getEmail_id());
 			pstmt.setString(10, dto.getEmail_site_text());
 			pstmt.setString(11, dto.getReceive());
-			pstmt.setString(12, dto.getInterest());
+			pstmt.setString(12, dto.getname());
 			pstmt.executeUpdate();
 			
 		}catch(Exception e) {
@@ -198,7 +198,7 @@ public class Dao {
 				dto.setEmail_id(rs.getString("email_id"));
 				dto.setEmail_site_text(rs.getString("email_site"));
 				dto.setReceive(rs.getString("email_receive"));
-				dto.setInterest(rs.getString("interest"));
+				dto.setname(rs.getString("name"));
 			}
 			
 			
@@ -219,7 +219,7 @@ public class Dao {
 		try {
 			conn = getConnection();
 			//�Է¹��� data�� ���� insert query ����
-			pstmt = conn.prepareStatement("update member_info set pw = ?, address = ?, first_number = ?, second_number = ?, third_number = ?, email_id = ?, email_site = ?, email_receive = ?, interest = ? where  id = ?  ");
+			pstmt = conn.prepareStatement("update member_info set pw = ?, address = ?, first_number = ?, second_number = ?, third_number = ?, email_id = ?, email_site = ?, email_receive = ?, name = ? where  id = ?  ");
 			
 			pstmt.setString(1, dto.getPass1());
 			pstmt.setString(2, dto.getAddress());
@@ -229,7 +229,7 @@ public class Dao {
 			pstmt.setString(6, dto.getEmail_id());
 			pstmt.setString(7, dto.getEmail_site_text());
 			pstmt.setString(8, dto.getReceive());
-			pstmt.setString(9, dto.getInterest());
+			pstmt.setString(9, dto.getname());
 			pstmt.setString(10, dto.getId());
 			pstmt.executeUpdate();
 			
@@ -286,6 +286,61 @@ public class Dao {
 		}
 		
 		return list;
+	}
+	
+	public boolean findPw_Check(String id, String email_id, String email_site_text) {
+		boolean result = false;
+		
+		try {
+			conn = getConnection();
+			
+			pstmt = conn.prepareStatement("select id from member_info where id=? and email_id = ? and email_site = ?");
+			pstmt.setString(1, id);
+			pstmt.setString(2, email_id);
+			pstmt.setString(3, email_site_text);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			try {if(rs != null)rs.close();}catch(SQLException s) {s.printStackTrace();}
+			try {if(pstmt != null)pstmt.close();}catch(SQLException s) {s.printStackTrace();}
+			try {if(conn != null)conn.close();}catch(SQLException s) {s.printStackTrace();}
+		}
+		
+		
+		
+		return result;
+		
+	}
+	
+	public String findPw(String id) {
+		String pw = "";
+		try {
+			conn = getConnection();
+			
+			pstmt = conn.prepareStatement("select pw from member_info where id=?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				pw = rs.getString("pw");
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			try {if(rs != null)rs.close();}catch(SQLException s) {s.printStackTrace();}
+			try {if(pstmt != null)pstmt.close();}catch(SQLException s) {s.printStackTrace();}
+			try {if(conn != null)conn.close();}catch(SQLException s) {s.printStackTrace();}
+		}
+		
+		return pw;
 	}
 
 }

@@ -40,7 +40,7 @@
     </div>
     <input type="button" value="회원가입" onclick="location.href='enter.hjh'" class="button" />
     <input type="button" value="아이디찾기" onclick="location.href='findId.hjh'" class="button" />
-    <input type="button" value="비밀번호찾기" onclick="location.href='findPw.hjh'" class="button" />
+    <input type="button" value="비밀번호찾기" onclick="location.href='findPwForm.hjh'" class="button" />
     
     <br /><input type="button" value="게시판" onclick="location.href='list.hjh'" class="button" /><br />
     <input type="checkbox" name="keeplogin" value="on"><font size="2">로그인상태 유지하기</font>
@@ -55,6 +55,7 @@
 		<tr >
 			<td>ID</td>
 			<td>PW</td>
+			<td>NAME</td>
 			<td>BIRTH</td>
 			<td>SEX</td>
 			<td>ADDRESS</td>
@@ -64,7 +65,6 @@
 			<td>EMAIL_ID</td>
 			<td>SITE</td>
 			<td>RECEIVE</td>
-			<td>INTEREST</td>
 			<td>REG_DATE</td>
 		</tr>
 		
@@ -72,6 +72,7 @@
 			<tr>
 				<td>${dto.id }</td>
 				<td>${dto.pass1}</td>
+				<td>${dto.name }</td>
 				<td>${dto.birth}</td>
 				<td>${dto.sex}</td>
 				<td>${dto.address}</td>
@@ -81,7 +82,6 @@
 				<td>${dto.email_id}</td>
 				<td>${dto.email_site_text}</td>
 				<td>${dto.receive}</td>
-				<td>${dto.interest}</td>
 				<td>${dto.reg_date}</td>
 			</tr>
 		</c:forEach>
